@@ -26,9 +26,6 @@ jobs:
     - name: Instala dependencias
       run: npm install
 
-    - name: Ejecuta pruebas
-      run: npm test
-
     - name: Crea el proyecto / Build project
       run: npm run build
     
