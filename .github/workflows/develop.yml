@@ -1,0 +1,34 @@
+# Este workflow de github actions funciona tomando en cuenta que no existe Docker en el ambiente de ejecución
+
+name: Despliegue sin Docker de desarrollo react en develop
+
+on:
+  push:
+    branches:
+      - develop 
+  pull_request:
+    branches:
+      - develop 
+
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Revisar código
+      uses: actions/checkout@v3
+
+    - name: alistar node.js / Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.8'
+
+    - name: Instala dependencias
+      run: npm install
+
+    - name: Ejecuta pruebas
+      run: npm test
+
+    - name: Crea el proyecto / Build project
+      run: npm run build
+    
